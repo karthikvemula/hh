@@ -1,18 +1,18 @@
 node('master') 
 { 
-    stage('ContinuousDownload-master') 
+    stage('ContinuousDownload-test') 
     {
        git 'https://github.com/selenium-saikrishna/maven.git'
     }
-    stage('ContinuousBuild-master')
+    stage('ContinuousBuild-test')
     {
         sh 'mvn package'
     }
-    stage('ContinuousDeployment-master')
+    stage('ContinuousDeployment-test')
     {
         sh 'scp /home/ubuntu/.jenkins/workspace/myproject/webapp/target/webapp.war ubuntu@172.31.87.17:/var/lib/tomcat7/webapps/master.war'
     }
-    stage('ContinuousTesting-master')
+    stage('ContinuousTesting-test')
     {
         git 'https://github.com/selenium-saikrishna/FunctionalTesting.git'
     }
